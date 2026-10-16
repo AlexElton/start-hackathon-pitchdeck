@@ -1,13 +1,23 @@
 <script setup lang="ts">
 // The five feature wishes drop onto a map as pins, in the same category colors as the app.
-defineProps<{ on?: boolean }>()
+// They drop in by themselves every time the slide becomes active.
+import { useIsSlideActive } from '@slidev/client'
+import { ref, watch } from 'vue'
+
+const isActive = useIsSlideActive()
+// Bumping `run` re-creates the pins, which restarts their drop animation
+const run = ref(0)
+watch(isActive, (active) => {
+  if (active)
+    run.value++
+}, { immediate: true })
 
 const wishes = [
-  { icon: 'tag', color: '#F7A800', label: 'Studentrabatter og lokale tilbud', y: 30 },
-  { icon: 'confetti', color: '#FF9E18', label: 'Kveldens arrangementer og fester', y: 50 },
-  { icon: 'pin', color: '#005379', label: 'Nyheter på kart', y: 26 },
-  { icon: 'funnel', color: '#28AAE2', label: 'Filtrering av kategorier', y: 48 },
-  { icon: 'chat', color: '#c792ea', label: 'Forklaring av ukjente ord og personer', y: 32 },
+  { color: '#F7A800', label: 'Studentrabatter og lokale tilbud', y: 14 },
+  { color: '#FF9E18', label: 'Kveldens arrangementer og fester', y: 28 },
+  { color: '#005379', label: 'Nyheter på kart', y: 10 },
+  { color: '#28AAE2', label: 'Filtrering av kategorier', y: 26 },
+  { color: '#c792ea', label: 'Forklaring av ukjente ord og personer', y: 16 },
 ]
 </script>
 
@@ -19,19 +29,13 @@ const wishes = [
     </svg>
     <div
       v-for="(w, i) in wishes"
-      :key="w.icon"
+      :key="`${run}-${w.label}`"
       class="wish"
-      :class="{ on }"
-      :style="{ left: `${10 + i * 20}%`, top: `${w.y}%`, transitionDelay: on ? `${i * 140}ms` : '0ms' }"
+      :class="{ drop: run > 0 }"
+      :style="{ left: `${10 + i * 20}%`, top: `${w.y}%`, animationDelay: `${900 + i * 280}ms` }"
     >
       <div class="wish-pin" :style="{ background: w.color }">
-        <div class="wish-icon">
-          <ph-tag-fill v-if="w.icon === 'tag'" class="w-7 h-7" />
-          <ph-confetti-fill v-else-if="w.icon === 'confetti'" class="w-7 h-7" />
-          <ph-map-pin-fill v-else-if="w.icon === 'pin'" class="w-7 h-7" />
-          <ph-funnel-fill v-else-if="w.icon === 'funnel'" class="w-7 h-7" />
-          <ph-chat-circle-text-fill v-else class="w-7 h-7" />
-        </div>
+        <div class="wish-dot" />
       </div>
       <div class="wish-shadow" />
       <div class="wish-label">{{ w.label }}</div>
@@ -43,7 +47,7 @@ const wishes = [
 .wish-map {
   position: relative;
   width: 820px;
-  height: 260px;
+  height: 280px;
   border-radius: 1.25rem;
   background: #e5edf5;
   overflow: hidden;
@@ -54,15 +58,26 @@ const wishes = [
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 140px;
+  width: 150px;
   opacity: 0;
   transform: translate(-50%, -160px);
-  transition: transform .7s cubic-bezier(.3, 1.6, .5, 1), opacity .3s ease;
 }
 
-.wish.on {
-  opacity: 1;
-  transform: translate(-50%, 0);
+/* A keyframe animation (not a transition) so it replays from the top every time
+   the slide is entered, even if the slide was already active when it mounted. */
+.wish.drop {
+  animation: wish-drop .9s cubic-bezier(.3, 1.6, .5, 1) both;
+}
+
+@keyframes wish-drop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -160px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 .wish-pin {
@@ -76,10 +91,11 @@ const wishes = [
   box-shadow: 0 6px 16px rgba(16, 16, 16, 0.18);
 }
 
-.wish-icon {
-  transform: rotate(45deg);
-  color: #ffffff;
-  display: flex;
+.wish-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
 }
 
 .wish-shadow {

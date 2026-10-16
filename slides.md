@@ -113,21 +113,21 @@ Spørsmålet i studentgruppa — «skriver …» mens vi venter. Klikk 1: 48 rea
 ---
 transition: slide-left
 layout: center
-clicks: 2
+clicks: 1
 ---
 
 <div class="flex flex-col items-center text-center">
   <div class="kicker">Mer fra undersøkelsen</div>
   <h1 class="!text-4xl mb-6">Hva studentene faktisk etterspør.</h1>
-  <WishPins :on="$clicks >= 1" />
-  <div v-click="2" class="mt-6 text-2xl font-bold" style="color: #101010">
+  <WishPins />
+  <div v-click class="mt-6 text-2xl font-bold" style="color: #101010">
     Vi bygde <span class="accent">det studentene ba om</span> — ikke det vi gjettet på.
   </div>
 </div>
 
 <!--
-Klikk 1: de fem ønskene faller ned som nåler på kartet — i samme farger som i appen.
-Tilbud, arrangementer, kart, filtrering, forklaring. Klikk 2: vi bygde det de ba om, ikke det vi gjettet på.
+Når sliden åpnes, faller de fem ønskene ned som nåler på kartet — i samme farger som i appen.
+Tilbud, arrangementer, kart, filtrering, forklaring. Klikk 1: vi bygde det de ba om, ikke det vi gjettet på.
 -->
 
 ---
