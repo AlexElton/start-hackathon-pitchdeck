@@ -43,7 +43,7 @@ clicks: 1
 
 <h1 class="!text-5xl mb-2">Hvordan finner du ut av hva studenter faktisk trenger?</h1>
 <div v-click class="mt-16 text-center">
-  <div class="text-6xl font-extrabold" style="color: #E02020">Du spør dem.</div>
+  <div class="text-6xl font-extrabold accent">Du spør dem.</div>
 </div>
 
 <!--
@@ -53,69 +53,82 @@ Klikk 1: «Du spør dem.» — vi spurte studentene selv. Neste slide viser svar
 ---
 transition: slide-left
 layout: center
+clicks: 1
 ---
 
-<div class="text-center">
-  <h1 class="!text-5xl mb-2">Vi spurte <span class="accent">48 studenter</span>.</h1>
-  <h2 class="!text-2xl dim font-normal mb-10">Undersøkelse om nyhetshverdagen deres.</h2>
-  <div v-click class="flex items-stretch justify-center gap-6">
-    <div class="card px-8 py-6 text-center" style="width: 300px">
-      <div class="text-6xl font-extrabold accent">70,8<span class="text-3xl">%</span></div>
-      <div class="text-lg mt-2" style="color: rgba(16,16,16,0.75)">føler at de går glipp av nøyaktig hvor hendelser tar sted</div>
-    </div>
-    <div class="card px-8 py-6 text-center" style="width: 300px">
-      <div class="text-6xl font-extrabold" style="color: #FF9E18">93,7<span class="text-3xl">%</span></div>
-      <div class="text-lg mt-2" style="color: rgba(16,16,16,0.75)">går ofte glipp av rabatter fordi de er spredt over for mange apper og steder</div>
-    </div>
-  </div>
-  <div v-click class="mt-10 text-2xl font-bold" style="color: #101010">
-    Og <span class="accent">91,7 %</span> ville brukt et kart som viser nyheter og fester der de faktisk skjer.
+<div class="flex flex-col items-center text-center">
+  <div class="kicker">Vi spurte 48 studenter</div>
+  <h1 class="!text-4xl mb-6">Hvor skjer det egentlig?</h1>
+  <LostPins :on="$clicks >= 1" />
+  <div v-click class="mt-4">
+    <span class="text-3xl font-extrabold" style="color: #E02020">34 av 48</span>
+    <span class="text-xl dim ml-2">vet ikke nøyaktig hvor ting skjer rundt dem</span>
   </div>
 </div>
 
 <!--
-Egen spørreundersøkelse, 48 svar. Klikk 1: tallene — 70,8 % mister hvor hendelser skjer,
-93,7 % mister rabatter. Klikk 2: 91,7 % ville brukt kartet.
+48 nåler = 48 studenter som svarte. Klikk 1: 34 av nålene mister plassen sin — de driver av, blir uskarpe og røde (70,8 %).
+Nyhetene finnes, men de er ikke koblet til et sted.
 -->
 
 ---
 transition: slide-left
 layout: center
+clicks: 1
 ---
 
-<div class="text-center">
-  <div class="kicker">Mer fra undersøkelsen</div>
-  <h1 class="!text-5xl mb-12">Hva studentene faktisk etterspør.</h1>
-  <div v-click class="mx-auto text-left" style="width: 620px">
-    <div class="flex items-center gap-6 mb-6">
-      <div class="text-xl font-extrabold" style="color: #F7A800; width: 44px">01</div>
-      <div class="text-2xl font-bold" style="color: #101010; border-left: 4px solid #F7A800; padding-left: 20px">Studentrabatter og lokale tilbud</div>
-    </div>
-    <div class="flex items-center gap-6 mb-6">
-      <div class="text-xl font-extrabold" style="color: #FF9E18; width: 44px">02</div>
-      <div class="text-2xl font-bold" style="color: #101010; border-left: 4px solid #FF9E18; padding-left: 20px">Kveldens arrangementer og fester</div>
-    </div>
-    <div class="flex items-center gap-6 mb-6">
-      <div class="text-xl font-extrabold" style="color: #005379; width: 44px">03</div>
-      <div class="text-2xl font-bold" style="color: #101010; border-left: 4px solid #005379; padding-left: 20px">Nyheter på kart</div>
-    </div>
-    <div class="flex items-center gap-6 mb-6">
-      <div class="text-xl font-extrabold" style="color: #28AAE2; width: 44px">04</div>
-      <div class="text-2xl font-bold" style="color: #101010; border-left: 4px solid #28AAE2; padding-left: 20px">Filtrering av nyhetskategorier</div>
-    </div>
-    <div class="flex items-center gap-6">
-      <div class="text-xl font-extrabold" style="color: #c792ea; width: 44px">05</div>
-      <div class="text-2xl font-bold" style="color: #101010; border-left: 4px solid #c792ea; padding-left: 20px">Forklaring av ukjente ord og personer</div>
-    </div>
+<div class="flex flex-col items-center text-center">
+  <h1 class="!text-4xl mb-6">Rabattene faller mellom stolene.</h1>
+  <FallingDeals :on="$clicks >= 1" />
+  <div v-click class="mt-4">
+    <span class="text-3xl font-extrabold" style="color: #E02020">45 av 48</span>
+    <span class="text-xl dim ml-2">går glipp av rabatter fordi de ligger spredt i for mange apper</span>
   </div>
-  <div v-click class="mt-12 text-2xl font-bold" style="color: #101010">
+</div>
+
+<!--
+48 rabattlapper svever rundt telefonen — én per student. Klikk 1: telefonen fanger tre, de 45 andre faller på gulvet (93,7 %).
+-->
+
+---
+transition: slide-left
+layout: center
+clicks: 1
+---
+
+<div class="flex flex-col items-center text-center">
+  <div class="kicker">Så vi spurte</div>
+  <h1 class="!text-4xl mb-4">Rekk opp hånda hvis du ville brukt <span class="accent">et kart over nyhetene</span>.</h1>
+  <HandsUp :on="$clicks >= 1" />
+  <div v-click class="mt-2">
+    <span class="text-3xl font-extrabold accent">44 av 48</span>
+    <span class="text-xl dim ml-2">rakk opp hånda</span>
+  </div>
+</div>
+
+<!--
+Still spørsmålet til salen også — gjerne be dem rekke opp hånda. Klikk 1: 44 av 48 hender skyter opp (91,7 %)
+for et kart som viser nyheter og fester der de faktisk skjer.
+-->
+
+---
+transition: slide-left
+layout: center
+clicks: 2
+---
+
+<div class="flex flex-col items-center text-center">
+  <div class="kicker">Mer fra undersøkelsen</div>
+  <h1 class="!text-4xl mb-6">Hva studentene faktisk etterspør.</h1>
+  <WishPins :on="$clicks >= 1" />
+  <div v-click="2" class="mt-6 text-2xl font-bold" style="color: #101010">
     Vi bygde <span class="accent">det studentene ba om</span> — ikke det vi gjettet på.
   </div>
 </div>
 
 <!--
-Funksjonsønsker matcher produktet: tilbud, arrangementer, kart, filtrering, forklaring.
-Ingen gjetning — vi bygde det studentene ba om.
+Klikk 1: de fem ønskene faller ned som nåler på kartet — i samme farger som i appen.
+Tilbud, arrangementer, kart, filtrering, forklaring. Klikk 2: vi bygde det de ba om, ikke det vi gjettet på.
 -->
 
 ---
