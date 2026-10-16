@@ -66,7 +66,7 @@ These are the ones already in the deck. Use them as inspiration, not a menu. Nev
 | A share of people (opening hook) | **People grid.** The affected share turns red in a ripple | Slide 1, 80 % (inline) |
 | Not knowing *where* | **Lost pins.** Pins on a map drift off, blur and turn red | `LostPins.vue`: 34 of 48 |
 | Missing out / slipping away | **Falling objects.** Tags float around a phone; a few are caught, the rest fall to the floor | `FallingDeals.vue`: 45 of 48 |
-| A vote or "would you…?" | **Hands up.** A crowd where the "yes" hands shoot up | `HandsUp.vue`: 44 of 48 |
+| A vote or "would you…?" | **Group chat.** The question is posted in the student group chat; reactions flood in and keep bobbing (yes = thumbs/hearts/fire, no = gray shrug) | `ChatReactions.vue`: 44 of 48 |
 | A list of wishes or features | **Pins dropping onto a map** in category colors, like in the app | `WishPins.vue`: five wishes |
 | Many sources, no overview | **Scattered sources** around one student | `FragmentationVisual.vue` |
 | Before / after | **Cross-fade** inside `PhoneFrame` (`.screen-fade`) | Feed → map |

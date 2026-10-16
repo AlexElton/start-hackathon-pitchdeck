@@ -97,18 +97,17 @@ clicks: 1
 ---
 
 <div class="flex flex-col items-center text-center">
-  <div class="kicker">Så vi spurte</div>
-  <h1 class="!text-4xl mb-4">Rekk opp hånda hvis du ville brukt <span class="accent">et kart over nyhetene</span>.</h1>
-  <HandsUp :on="$clicks >= 1" />
+  <h1 class="!text-4xl mb-4">Så vi spurte <span class="accent">rett ut</span>.</h1>
+  <ChatReactions :on="$clicks >= 1" />
   <div v-click class="mt-2">
     <span class="text-3xl font-extrabold accent">44 av 48</span>
-    <span class="text-xl dim ml-2">rakk opp hånda</span>
+    <span class="text-xl dim ml-2">sa ja</span>
   </div>
 </div>
 
 <!--
-Still spørsmålet til salen også — gjerne be dem rekke opp hånda. Klikk 1: 44 av 48 hender skyter opp (91,7 %)
-for et kart som viser nyheter og fester der de faktisk skjer.
+Spørsmålet i studentgruppa — «skriver …» mens vi venter. Klikk 1: 48 reaksjoner strømmer inn, én per student:
+44 tomler, hjerter og flammer (91,7 % ja), 4 skuldertrekk. De ville brukt et kart som viser nyheter og fester der de skjer.
 -->
 
 ---
