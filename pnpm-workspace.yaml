@@ -5,3 +5,8 @@ shamefullyHoist: true
 # build scripts by default (`strictDepBuilds: true`), so allowlist it up-front.
 allowBuilds:
   playwright-chromium: true
+
+# @comark/markdown-it imports `markdown-it/lib/token.mjs`, which markdown-it 15
+# no longer exports. Pin to v14 until upstream catches up.
+overrides:
+  markdown-it: ^14.1.0

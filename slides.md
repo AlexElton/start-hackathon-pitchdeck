@@ -6,7 +6,7 @@ drawings:
   persist: false
 mdc: true
 transition: fade
-class: !p-0
+class: '!p-0'
 layout: default
 clicks: 1
 ---
@@ -24,9 +24,9 @@ clicks: 1
       />
     </div>
     <div v-click>
-      <div class="text-4xl font-extrabold mt-4" style="color: #101010">80 %</div>
+      <div class="text-4xl font-extrabold mt-4" style="color: #101010">80 % av studenter</div>
       <p class="text-lg mt-2" style="color: rgba(16,16,16,0.75); max-width: 300px">
-        av studenter synes det er vanskelig å henge med på lokale nyheter
+        mener det er vanskelig å henge med på lokale nyheter
       </p>
     </div>
   </div>
@@ -86,24 +86,24 @@ layout: center
 <div class="text-center">
   <div class="kicker">Mer fra undersøkelsen</div>
   <h1 class="!text-5xl mb-12">Hva studentene faktisk etterspør.</h1>
-  <div class="mx-auto text-left" style="width: 620px">
-    <div v-click class="flex items-center gap-6 mb-6">
+  <div v-click class="mx-auto text-left" style="width: 620px">
+    <div class="flex items-center gap-6 mb-6">
       <div class="text-xl font-extrabold" style="color: #F7A800; width: 44px">01</div>
       <div class="text-2xl font-bold" style="color: #101010; border-left: 4px solid #F7A800; padding-left: 20px">Studentrabatter og lokale tilbud</div>
     </div>
-    <div v-click class="flex items-center gap-6 mb-6">
+    <div class="flex items-center gap-6 mb-6">
       <div class="text-xl font-extrabold" style="color: #FF9E18; width: 44px">02</div>
       <div class="text-2xl font-bold" style="color: #101010; border-left: 4px solid #FF9E18; padding-left: 20px">Kveldens arrangementer og fester</div>
     </div>
-    <div v-click class="flex items-center gap-6 mb-6">
+    <div class="flex items-center gap-6 mb-6">
       <div class="text-xl font-extrabold" style="color: #005379; width: 44px">03</div>
       <div class="text-2xl font-bold" style="color: #101010; border-left: 4px solid #005379; padding-left: 20px">Nyheter på kart</div>
     </div>
-    <div v-click class="flex items-center gap-6 mb-6">
+    <div class="flex items-center gap-6 mb-6">
       <div class="text-xl font-extrabold" style="color: #28AAE2; width: 44px">04</div>
       <div class="text-2xl font-bold" style="color: #101010; border-left: 4px solid #28AAE2; padding-left: 20px">Filtrering av nyhetskategorier</div>
     </div>
-    <div v-click class="flex items-center gap-6">
+    <div class="flex items-center gap-6">
       <div class="text-xl font-extrabold" style="color: #c792ea; width: 44px">05</div>
       <div class="text-2xl font-bold" style="color: #101010; border-left: 4px solid #c792ea; padding-left: 20px">Forklaring av ukjente ord og personer</div>
     </div>
