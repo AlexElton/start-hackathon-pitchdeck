@@ -17,7 +17,6 @@ const wishes = [
   { color: '#FF9E18', label: 'Kveldens arrangementer og fester', y: 28 },
   { color: '#005379', label: 'Nyheter på kart', y: 10 },
   { color: '#28AAE2', label: 'Filtrering av kategorier', y: 26 },
-  { color: '#c792ea', label: 'Forklaring av ukjente ord og personer', y: 16 },
 ]
 </script>
 
@@ -32,7 +31,7 @@ const wishes = [
       :key="`${run}-${w.label}`"
       class="wish"
       :class="{ drop: run > 0 }"
-      :style="{ left: `${10 + i * 20}%`, top: `${w.y}%`, animationDelay: `${900 + i * 280}ms` }"
+      :style="{ left: `${(i + 0.5) * (100 / wishes.length)}%`, top: `${w.y}%`, animationDelay: `${900 + i * 280}ms` }"
     >
       <div class="wish-pin" :style="{ background: w.color }">
         <div class="wish-dot" />

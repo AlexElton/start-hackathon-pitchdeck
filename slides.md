@@ -74,6 +74,47 @@ Nyhetene finnes, men de er ikke koblet til et sted.
 ---
 transition: slide-left
 layout: center
+---
+
+<div class="flex justify-center">
+  <PhoneFrame style="width: 212px">
+    <div class="feed-skeleton" style="width: 100%; height: 100%">
+      <div class="feed-skeleton-track">
+        <div v-for="half in 4" :key="half" class="feed-grid">
+          <div class="feed-box" style="height: 64px">
+            <div class="feed-img" style="height: 30px" />
+            <div class="feed-line" style="width: 80%" />
+          </div>
+          <div class="feed-box" style="height: 40px">
+            <div class="feed-line" style="width: 70%" />
+          </div>
+          <div class="feed-box" style="height: 34px">
+            <div class="feed-line" style="width: 60%" />
+          </div>
+          <div class="feed-box" style="height: 58px">
+            <div class="feed-img" style="height: 24px" />
+            <div class="feed-line" style="width: 85%" />
+          </div>
+          <div class="feed-box" style="height: 46px">
+            <div class="feed-line" style="width: 75%" />
+          </div>
+          <div class="feed-box" style="height: 70px">
+            <div class="feed-img" style="height: 34px" />
+            <div class="feed-line" style="width: 90%" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </PhoneFrame>
+</div>
+
+<!--
+Den endeløse feeden: slik leter studentene etter lokalnyheter i dag — scrolling uten sted.
+-->
+
+---
+transition: slide-left
+layout: center
 clicks: 1
 ---
 
@@ -126,8 +167,8 @@ clicks: 1
 </div>
 
 <!--
-Når sliden åpnes, faller de fem ønskene ned som nåler på kartet — i samme farger som i appen.
-Tilbud, arrangementer, kart, filtrering, forklaring. Klikk 1: vi bygde det de ba om, ikke det vi gjettet på.
+Når sliden åpnes, faller de fire ønskene ned som nåler på kartet — i samme farger som i appen.
+Tilbud, arrangementer, kart, filtrering. Klikk 1: vi bygde det de ba om, ikke det vi gjettet på.
 -->
 
 ---
@@ -141,7 +182,7 @@ clicks: 1
     class="absolute left-1/2 top-1/2 z-10 transition-transform duration-700"
     :style="{ transform: $clicks >= 1 ? 'translate(calc(-50% - 180px), -50%)' : 'translate(-50%, -50%)' }"
   >
-    <PhoneFrame style="width: 210px; height: 430px">
+    <PhoneFrame style="width: 212px" :hide-status="$clicks >= 1">
       <div class="relative w-full h-full">
         <div
           class="absolute inset-0 screen-fade"
@@ -179,7 +220,7 @@ clicks: 1
           class="absolute inset-0 screen-fade"
           :class="{ on: $clicks >= 1 }"
         >
-          <AppMapScreen active-tab="kart" filter="saker" show-sheet />
+          <PhoneVideo :playing="$clicks >= 1" />
         </div>
       </div>
     </PhoneFrame>
@@ -191,7 +232,7 @@ clicks: 1
     :style="{ left: 'calc(50% + 85px)', transform: $clicks >= 1 ? 'translateY(-50%)' : 'translate(-60px, -50%)' }"
   >
     <div class="accent uppercase !text-8xl font-bold leading-none">DETTE</div>
-    <div class="text-5xl font-bold mt-2">er det vi vil ha.</div>
+    <div class="text-5xl font-bold mt-2">er det de vil ha.</div>
   </div>
 </div>
 
@@ -201,35 +242,24 @@ layout: center
 class: text-center
 ---
 
-<div class="kicker">Demo</div>
-<h1 class="!text-5xl mb-8">Fra pin til hele saken.</h1>
 <div class="flex items-center justify-center gap-6">
   <div class="text-center">
-    <PhoneFrame style="width: 210px; height: 440px">
-      <AppMapScreen active-tab="kart" filter="saker" />
-    </PhoneFrame>
+    <PhoneFrame screen="map" style="width: 217px" />
     <div class="mt-3 text-sm font-bold tracking-widest uppercase faint">Pin</div>
   </div>
   <div class="text-3xl accent">→</div>
   <div class="text-center">
-    <PhoneFrame style="width: 210px; height: 440px">
-      <AppSummaryScreen />
-    </PhoneFrame>
-    <div class="mt-3 text-sm font-bold tracking-widest uppercase faint">Sammendrag</div>
+    <PhoneFrame screen="article" style="width: 217px" />
+    <div class="mt-3 text-sm font-bold tracking-widest uppercase faint">Oppsummering</div>
   </div>
   <div class="text-3xl accent">→</div>
   <div class="text-center">
-    <PhoneFrame style="width: 210px; height: 440px">
-      <AppArticleScreen />
-    </PhoneFrame>
-    <div class="mt-3 text-sm font-bold tracking-widest uppercase faint">Hele saken</div>
+    <PhoneFrame screen="summary" style="width: 217px" />
+    <div class="mt-3 text-sm font-bold tracking-widest uppercase faint">Sammendrag</div>
   </div>
-</div>
-<div v-click class="mt-6 text-center text-lg dim">
-  Bygget i SwiftUI → Vapor → Polaris-data + Gemini. La oss vise dere live.
 </div>
 
 <!--
-Overlat resten til live-demoen: åpne appen, trykk på en pin, vis sammendrag og artikkel.
+Overlat resten til live-demoen: åpne appen, trykk på en pin, vis oppsummeringen av saken og dagens sammendrag.
 Arkitektur: SwiftUI → Vapor → Polaris-data + Gemini.
 -->
