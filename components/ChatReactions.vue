@@ -1,15 +1,15 @@
 <script setup lang="ts">
-// We ask the student group chat. When `on`, 48 reactions flood in — one per respondent:
-// 44 enthusiastic yeses (91,7 %), 4 shrugs. Reactions keep bobbing so the slide stays alive.
+// We ask the student group chat (Beer Nye). When `on`, 52 reactions flood in — one per respondent:
+// 48 enthusiastic yeses (91,7 %), 4 shrugs. Reactions keep bobbing so the slide stays alive.
 const props = withDefaults(defineProps<{ on?: boolean, total?: number, yes?: number }>(), {
   on: false,
-  total: 48,
-  yes: 44,
+  total: 52,
+  yes: 48,
 })
 
 const W = 760
-const H = 270
-const BUBBLE = { w: 440, h: 96 }
+const H = 300
+const BUBBLE = { w: 460, h: 110 }
 
 function seeded(seed: number) {
   let s = seed
@@ -56,13 +56,18 @@ const reactions = spots.map((s, i) => ({
 
 <template>
   <div class="chat" :style="{ width: `${W}px`, height: `${H}px` }">
-    <div class="bubble" :style="{ width: `${BUBBLE.w}px` }">
+    <div class="message" :style="{ width: `${BUBBLE.w}px` }">
       <div class="avatar">
-        <ph-users-three-fill class="w-6 h-6" />
+        <ph-users-three-fill class="w-5 h-5" />
       </div>
       <div class="text-left">
-        <div class="bubble-name">Studentgruppa · 48 medlemmer</div>
-        <div class="bubble-text">Ville du brukt et kart som viser nyheter og fester der de faktisk skjer?</div>
+        <div class="bubble-name">Beer Nye · 52 medlemmer</div>
+        <div class="bubble">
+          Ville du brukt et kart som viser nyheter og fester der de faktisk skjer?
+          <svg class="tail" viewBox="0 0 14 18" aria-hidden="true">
+            <path d="M14 0C14 8 10 15 0 18H14Z" fill="currentColor" />
+          </svg>
+        </div>
       </div>
       <div class="typing" :class="{ hide: props.on }">
         <span /><span /><span />
@@ -97,26 +102,21 @@ const reactions = spots.map((s, i) => ({
   position: relative;
 }
 
-.bubble {
+.message {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 20px;
-  border-radius: 22px 22px 22px 6px;
-  background: #ffffff;
-  border: 1px solid #e2e2e2;
-  box-shadow: 0 10px 30px rgba(16, 16, 16, 0.08);
+  align-items: flex-end;
+  gap: 10px;
 }
 
 .avatar {
   flex-shrink: 0;
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -129,23 +129,40 @@ const reactions = spots.map((s, i) => ({
   font-size: 12px;
   font-weight: 700;
   color: rgba(16, 16, 16, 0.45);
+  margin: 0 0 4px 14px;
 }
 
-.bubble-text {
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.3;
+/* Received message: white bubble, tail at the bottom-left pointing to the avatar */
+.bubble {
+  position: relative;
+  padding: 11px 16px;
+  border-radius: 20px 20px 20px 6px;
+  background: #ffffff;
   color: #101010;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+  filter: drop-shadow(0 6px 16px rgba(16, 16, 16, 0.08));
 }
 
+.tail {
+  position: absolute;
+  left: -6px;
+  bottom: 0;
+  width: 14px;
+  height: 18px;
+  color: #ffffff;
+}
+
+/* Someone is typing a reply — sits on the right like an outgoing message */
 .typing {
   position: absolute;
-  left: 22px;
-  bottom: -30px;
+  right: 0;
+  bottom: -38px;
   display: flex;
   gap: 4px;
-  padding: 7px 10px;
-  border-radius: 12px;
+  padding: 9px 12px;
+  border-radius: 16px 16px 6px 16px;
   background: #e9e9e9;
   transition: opacity .3s ease;
 }

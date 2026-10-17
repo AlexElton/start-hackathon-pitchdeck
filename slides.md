@@ -14,17 +14,9 @@ clicks: 1
 <div class="absolute inset-0" style="background: #ffffff" />
 <div class="absolute inset-0 flex items-center justify-center">
   <div class="flex flex-col items-center text-center">
-    <div class="grid grid-cols-10 gap-x-2 gap-y-1">
-      <ph-person-fill
-        v-for="i in 50"
-        :key="i"
-        class="w-7 h-7"
-        :class="{ 'person-red': $clicks >= 1 && i <= 40 }"
-        :style="{ transitionDelay: $clicks >= 1 ? `${(i - 1) * 40}ms` : '0ms' }"
-      />
-    </div>
+    <PeopleGrid :total="50" :affected="40" :on="$clicks >= 1" />
     <div v-click>
-      <div class="text-4xl font-extrabold mt-4" style="color: #101010">80 % av studenter</div>
+      <div class="text-4xl font-extrabold mt-4" style="color: #101010">8 av 10 studenter</div>
       <p class="text-lg mt-2" style="color: rgba(16,16,16,0.75); max-width: 300px">
         mener det er vanskelig å henge med på lokale nyheter
       </p>
@@ -33,7 +25,7 @@ clicks: 1
 </div>
 
 <!--
-Ren hvit bakgrunn med 50 mørkeblå figurer. Klikk 1: de første 40 blir klart røde (80 %), og «80 % av studenter synes …»-teksten dukker opp — 40 av 50 studenter mister lokalnyhetene. La tallet snakke. Ikke forklar produktet ennå.
+Ren hvit bakgrunn med 50 dempede blå figurer. Klikk 1: de første 40 blir klart røde (80 %), og «80 % av studenter synes …»-teksten dukker opp — 40 av 50 studenter mister lokalnyhetene. La tallet snakke. Ikke forklar produktet ennå.
 -->
 
 ---
@@ -57,17 +49,17 @@ clicks: 1
 ---
 
 <div class="flex flex-col items-center text-center">
-  <div class="kicker">Vi spurte 48 studenter</div>
+  <div class="kicker">Vi spurte 52 studenter</div>
   <h1 class="!text-4xl mb-6">Hvor skjer det egentlig?</h1>
   <LostPins :on="$clicks >= 1" />
   <div v-click class="mt-4">
-    <span class="text-3xl font-extrabold" style="color: #E02020">34 av 48</span>
+    <span class="text-3xl font-extrabold" style="color: #E02020">37 av 52</span>
     <span class="text-xl dim ml-2">vet ikke nøyaktig hvor ting skjer rundt dem</span>
   </div>
 </div>
 
 <!--
-48 nåler = 48 studenter som svarte. Klikk 1: 34 av nålene mister plassen sin — de driver av, blir uskarpe og røde (70,8 %).
+52 nåler = 52 studenter som svarte. Klikk 1: 37 av nålene mister plassen sin — de driver av, blir uskarpe og røde (70,8 %).
 Nyhetene finnes, men de er ikke koblet til et sted.
 -->
 
@@ -77,39 +69,13 @@ layout: center
 ---
 
 <div class="flex justify-center">
-  <PhoneFrame style="width: 212px">
-    <div class="feed-skeleton" style="width: 100%; height: 100%">
-      <div class="feed-skeleton-track">
-        <div v-for="half in 4" :key="half" class="feed-grid">
-          <div class="feed-box" style="height: 64px">
-            <div class="feed-img" style="height: 30px" />
-            <div class="feed-line" style="width: 80%" />
-          </div>
-          <div class="feed-box" style="height: 40px">
-            <div class="feed-line" style="width: 70%" />
-          </div>
-          <div class="feed-box" style="height: 34px">
-            <div class="feed-line" style="width: 60%" />
-          </div>
-          <div class="feed-box" style="height: 58px">
-            <div class="feed-img" style="height: 24px" />
-            <div class="feed-line" style="width: 85%" />
-          </div>
-          <div class="feed-box" style="height: 46px">
-            <div class="feed-line" style="width: 75%" />
-          </div>
-          <div class="feed-box" style="height: 70px">
-            <div class="feed-img" style="height: 34px" />
-            <div class="feed-line" style="width: 90%" />
-          </div>
-        </div>
-      </div>
-    </div>
+  <PhoneFrame style="width: 212px" hide-status>
+    <PhoneVideo video="feed" playing loop />
   </PhoneFrame>
 </div>
 
 <!--
-Den endeløse feeden: slik leter studentene etter lokalnyheter i dag — scrolling uten sted.
+Den endeløse feeden (ekte skjermopptak av en nyhetsapp): slik leter studentene etter lokalnyheter i dag — scrolling uten sted.
 -->
 
 ---
@@ -122,13 +88,13 @@ clicks: 1
   <h1 class="!text-4xl mb-6">Rabattene faller mellom stolene.</h1>
   <FallingDeals :on="$clicks >= 1" />
   <div v-click class="mt-4">
-    <span class="text-3xl font-extrabold" style="color: #E02020">45 av 48</span>
+    <span class="text-3xl font-extrabold" style="color: #E02020">49 av 52</span>
     <span class="text-xl dim ml-2">går glipp av rabatter fordi de ligger spredt i for mange apper</span>
   </div>
 </div>
 
 <!--
-48 rabattlapper svever rundt telefonen — én per student. Klikk 1: telefonen fanger tre, de 45 andre faller på gulvet (93,7 %).
+52 rabattlapper svever rundt telefonen — én per student. Klikk 1: telefonen fanger tre, de 49 andre faller på gulvet (93,7 %).
 -->
 
 ---
@@ -141,14 +107,14 @@ clicks: 1
   <h1 class="!text-4xl mb-4">Så vi spurte <span class="accent">rett ut</span>.</h1>
   <ChatReactions :on="$clicks >= 1" />
   <div v-click class="mt-2">
-    <span class="text-3xl font-extrabold accent">44 av 48</span>
+    <span class="text-3xl font-extrabold accent">48 av 52</span>
     <span class="text-xl dim ml-2">sa ja</span>
   </div>
 </div>
 
 <!--
-Spørsmålet i studentgruppa — «skriver …» mens vi venter. Klikk 1: 48 reaksjoner strømmer inn, én per student:
-44 tomler, hjerter og flammer (91,7 % ja), 4 skuldertrekk. De ville brukt et kart som viser nyheter og fester der de skjer.
+Spørsmålet i gruppechatten Beer Nye — «skriver …» mens vi venter. Klikk 1: 52 reaksjoner strømmer inn, én per student:
+48 tomler, hjerter og flammer (91,7 % ja), 4 skuldertrekk. De ville brukt et kart som viser nyheter og fester der de skjer.
 -->
 
 ---
@@ -167,8 +133,8 @@ clicks: 1
 </div>
 
 <!--
-Når sliden åpnes, faller de fire ønskene ned som nåler på kartet — i samme farger som i appen.
-Tilbud, arrangementer, kart, filtrering. Klikk 1: vi bygde det de ba om, ikke det vi gjettet på.
+Når sliden åpnes, faller de fem ønskene ned som nåler på kartet — i samme farger som i appen.
+Tilbud, arrangementer, kart, filtrering, nyhetssammendrag. Klikk 1: vi bygde det de ba om, ikke det vi gjettet på.
 -->
 
 ---
@@ -182,39 +148,13 @@ clicks: 1
     class="absolute left-1/2 top-1/2 z-10 transition-transform duration-700"
     :style="{ transform: $clicks >= 1 ? 'translate(calc(-50% - 180px), -50%)' : 'translate(-50%, -50%)' }"
   >
-    <PhoneFrame style="width: 212px" :hide-status="$clicks >= 1">
+    <PhoneFrame style="width: 212px" hide-status>
       <div class="relative w-full h-full">
         <div
           class="absolute inset-0 screen-fade"
           :class="{ on: $clicks < 1 }"
         >
-          <div class="feed-skeleton" style="width: 100%; height: 100%">
-            <div class="feed-skeleton-track">
-              <div v-for="half in 4" :key="half" class="feed-grid">
-                <div class="feed-box" style="height: 64px">
-                  <div class="feed-img" style="height: 30px" />
-                  <div class="feed-line" style="width: 80%" />
-                </div>
-                <div class="feed-box" style="height: 40px">
-                  <div class="feed-line" style="width: 70%" />
-                </div>
-                <div class="feed-box" style="height: 34px">
-                  <div class="feed-line" style="width: 60%" />
-                </div>
-                <div class="feed-box" style="height: 58px">
-                  <div class="feed-img" style="height: 24px" />
-                  <div class="feed-line" style="width: 85%" />
-                </div>
-                <div class="feed-box" style="height: 46px">
-                  <div class="feed-line" style="width: 75%" />
-                </div>
-                <div class="feed-box" style="height: 70px">
-                  <div class="feed-img" style="height: 34px" />
-                  <div class="feed-line" style="width: 90%" />
-                </div>
-              </div>
-            </div>
-          </div>
+          <PhoneVideo video="feed" :playing="$clicks < 1" loop />
         </div>
         <div
           class="absolute inset-0 screen-fade"

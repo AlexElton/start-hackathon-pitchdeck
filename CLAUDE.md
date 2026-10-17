@@ -40,10 +40,10 @@ The audience should *see* the finding before they read it. Slide 1 sets the stan
 
 1. **One finding per slide, or per click.** If a slide has three percentages, split it into clicks or slides.
 2. **Every icon is something real.** Choose an icon that *is* the subject of the finding: a person for a share of students, a pin for location, a tag for discounts. Never use an abstract circle or bar when a real object fits.
-3. **Make the count honest.** Our survey had **48 respondents**, so draw 48 people, one icon per real student. Round to whole people and say so in the speaker notes:
-   - 70,8 % = **34 of 48**
-   - 93,7 % = **45 of 48**
-   - 91,7 % = **44 of 48**
+3. **Make the count honest.** Our survey had **52 respondents**, so draw 52 people, one icon per real student. Round to whole people and say so in the speaker notes:
+   - 70,8 % = **37 of 52**
+   - 93,7 % = **49 of 52**
+   - 91,7 % = **48 of 52**
 
    Use a 10×10 grid (100 icons) only for external statistics with no known *n*, like the 80 % on slide 1. In that case, state the source.
 4. **Change the picture to match the finding.** The animation should act out the claim:
@@ -64,10 +64,10 @@ These are the ones already in the deck. Use them as inspiration, not a menu. Nev
 | The finding is about… | Pattern | In the deck |
 |---|---|---|
 | A share of people (opening hook) | **People grid.** The affected share turns red in a ripple | Slide 1, 80 % (inline) |
-| Not knowing *where* | **Lost pins.** Pins on a map drift off, blur and turn red | `LostPins.vue`: 34 of 48 |
-| Missing out / slipping away | **Falling objects.** Tags float around a phone; a few are caught, the rest fall to the floor | `FallingDeals.vue`: 45 of 48 |
-| A vote or "would you…?" | **Group chat.** The question is posted in the student group chat; reactions flood in and keep bobbing (yes = thumbs/hearts/fire, no = gray shrug) | `ChatReactions.vue`: 44 of 48 |
-| A list of wishes or features | **Pins dropping onto a map** in category colors, like in the app | `WishPins.vue`: four wishes |
+| Not knowing *where* | **Lost pins.** Pins on a map drift off, blur and turn red | `LostPins.vue`: 37 of 52 |
+| Missing out / slipping away | **Falling objects.** Tags float around a phone; a few are caught, the rest fall to the floor | `FallingDeals.vue`: 49 of 52 |
+| A vote or "would you…?" | **Group chat.** The question is posted in the student group chat; reactions flood in and keep bobbing (yes = thumbs/hearts/fire, no = gray shrug) | `ChatReactions.vue`: 48 of 52 |
+| A list of wishes or features | **Pins dropping onto a map** in category colors, like in the app | `WishPins.vue`: five wishes |
 | Many sources, no overview | **Scattered sources** around one student | `FragmentationVisual.vue` |
 | Before / after | **Cross-fade** inside `PhoneFrame` (`.screen-fade`) | Feed → map |
 
@@ -82,24 +82,16 @@ More ideas for future findings: a calendar where days light up, a notification s
 clicks: 1
 ---
 
-<div class="grid grid-cols-12 gap-x-2 gap-y-1">
-  <ph-person-fill
-    v-for="i in 48"
-    :key="i"
-    class="w-7 h-7"
-    :class="{ 'person-red': $clicks >= 1 && i <= 34 }"
-    :style="{ transitionDelay: $clicks >= 1 ? `${(i - 1) * 40}ms` : '0ms' }"
-  />
-</div>
+<PeopleGrid :total="52" :affected="37" :cols="13" :on="$clicks >= 1" />
 <div v-click>
-  <div class="text-4xl font-extrabold mt-4">34 av 48 studenter</div>
+  <div class="text-4xl font-extrabold mt-4">37 av 52 studenter</div>
   <p class="text-lg mt-2 dim">vet ikke nøyaktig hvor ting skjer</p>
 </div>
 ```
 
-- 48 fits a 12×4 grid, 50 fits 10×5, 100 fits 10×10.
-- Keep the 40 ms stagger. The ripple is the "aha" moment, so don't make it faster.
-- For a positive finding, swap `person-red` for a class that sets `color: #005379`, and start the people in `var(--ink-faint)`.
+- 52 fits a 13×4 grid, 50 fits 10×5, 100 fits 10×10.
+- Use `components/PeopleGrid.vue`. It draws its own head-and-shoulders silhouette: unaffected people in soft Polaris blue (`.person`), affected ones turn red all at once with a small lift (`.person-red`). Don't stagger them.
+- For a positive finding, swap `person-red` for a class that sets `color: #005379`, and start the people in `var(--ink-faint)`. Change `.person` and `.person-red` in a slide-scoped style, not globally.
 
 ## Motion
 
@@ -119,7 +111,7 @@ clicks: 1
 
 - [ ] Can someone get the point in 3 seconds with the sound off?
 - [ ] Is this visual metaphor used anywhere else in the deck? (It shouldn't be.)
-- [ ] Does each icon stand for a real thing, and does the count match the data (n = 48)?
+- [ ] Does each icon stand for a real thing, and does the count match the data (n = 52)?
 - [ ] Is there at most one number on screen?
 - [ ] Is red used only for the problem?
 - [ ] Do the clicks match the speaker notes?

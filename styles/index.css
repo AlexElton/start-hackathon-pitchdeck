@@ -130,14 +130,22 @@ body,
   box-shadow: 0 0 0 4px rgba(16, 16, 16, 0.06);
 }
 
-/* ---------- Slide 1: people turning red one by one ---------- */
-.ph-person-fill {
-  color: #005379;
-  transition: color 0.25s ease;
+/* ---------- Slide 1: people turning red together ---------- */
+/* Unaffected people: Polaris blue, softened so the red carries the slide */
+.person {
+  color: rgba(0, 83, 121, 0.22);
+  transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .person-red {
   color: #E02020;
+  animation: person-hit 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes person-hit {
+  0%   { transform: translateY(0); }
+  35%  { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
 }
 
 /* ---------- Slide 5: staged reveal ---------- */
@@ -164,68 +172,6 @@ body,
 .hairline {
   height: 1px;
   background: var(--card-border);
-}
-
-/* ---------- Scrolling feed skeleton ---------- */
-@keyframes feed-scroll {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-50%); }
-}
-
-.feed-skeleton {
-  position: relative;
-  overflow: hidden;
-}
-
-.feed-skeleton-track {
-  animation: feed-scroll 12s linear infinite;
-}
-
-.feed-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  padding-bottom: 8px;
-}
-
-.feed-box {
-  border-radius: 8px;
-  background: rgba(16, 16, 16, 0.06);
-  border: 1px solid rgba(16, 16, 16, 0.08);
-  padding: 8px 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-}
-
-.feed-line {
-  height: 7px;
-  border-radius: 4px;
-  background: rgba(16, 16, 16, 0.16);
-}
-
-.feed-img {
-  border-radius: 6px;
-  background: rgba(16, 16, 16, 0.22);
-}
-
-.feed-grid > .feed-box:nth-child(odd) {
-  margin-top: 6px;
-}
-
-.feed-skeleton::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0) 18%,
-    rgba(255, 255, 255, 0) 82%,
-    #ffffff 100%
-  );
 }
 
 .slidev-layout a {

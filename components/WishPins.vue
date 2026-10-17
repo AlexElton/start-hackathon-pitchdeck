@@ -17,6 +17,7 @@ const wishes = [
   { color: '#FF9E18', label: 'Kveldens arrangementer og fester', y: 28 },
   { color: '#005379', label: 'Nyheter på kart', y: 10 },
   { color: '#28AAE2', label: 'Filtrering av kategorier', y: 26 },
+  { color: '#c792ea', label: 'Nyhetssammendrag', y: 12 },
 ]
 </script>
 

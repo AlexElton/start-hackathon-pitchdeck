@@ -1,9 +1,9 @@
 <script setup lang="ts">
-// 48 discount tags float around a phone — one per respondent. When `on`, 3 get caught
-// by the phone and 45 fall to the floor (93,7 % miss discounts: "faller mellom stolene").
+// 52 discount tags float around a phone — one per respondent. When `on`, 3 get caught
+// by the phone and 49 fall to the floor (93,7 % miss discounts: "faller mellom stolene").
 const props = withDefaults(defineProps<{ on?: boolean, total?: number, caught?: number }>(), {
   on: false,
-  total: 48,
+  total: 52,
   caught: 3,
 })
 

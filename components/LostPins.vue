@@ -1,10 +1,10 @@
 <script setup lang="ts">
-// 48 pins on a map — one per respondent. When `on`, 34 of them lose their place:
+// 52 pins on a map — one per respondent. When `on`, 37 of them lose their place:
 // they drift, blur and turn red (70,8 % don't know exactly where things happen).
 const props = withDefaults(defineProps<{ on?: boolean, total?: number, lost?: number }>(), {
   on: false,
-  total: 48,
-  lost: 34,
+  total: 52,
+  lost: 37,
 })
 
 function seeded(seed: number) {

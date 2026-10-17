@@ -1,14 +1,18 @@
 <script setup lang="ts">
-// App screen recording for use inside PhoneFrame. Plays once from the start whenever
-// `playing` turns true and stops on the last frame; rewinds when `playing` turns false.
+// App screen recording for use inside PhoneFrame. Plays from the start whenever
+// `playing` turns true and stops on the last frame (or repeats with `loop`);
+// rewinds when `playing` turns false.
+// `video` picks the recording: "demo" (our app, default) or "feed" (an endless news feed).
 import { onMounted, ref, watch } from 'vue'
 import demo from '../assets/screens/app-demo.mp4'
+import feed from '../assets/screens/feed-demo.mp4'
 
-const props = defineProps<{ playing?: boolean }>()
-const video = ref<HTMLVideoElement>()
+const props = defineProps<{ playing?: boolean, loop?: boolean, video?: 'demo' | 'feed' }>()
+const src = { demo, feed }[props.video ?? 'demo']
+const el = ref<HTMLVideoElement>()
 
 function sync(playing?: boolean) {
-  const v = video.value
+  const v = el.value
   if (!v)
     return
   v.currentTime = 0
@@ -25,10 +29,11 @@ onMounted(() => props.playing && sync(true))
 
 <template>
   <video
-    ref="video"
-    :src="demo"
+    ref="el"
+    :src="src"
     class="w-full h-full"
     style="object-fit: cover; object-position: top"
+    :loop="loop"
     muted
     playsinline
     preload="auto"
