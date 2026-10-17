@@ -1,15 +1,18 @@
 <script setup lang="ts">
-// One person per icon. `affected` people turn red when `on` is true.
+// One person per icon. `affected` people turn red when `on` is true,
+// one row at a time from the top, `rowDelay` ms apart.
 withDefaults(defineProps<{
   total?: number
   affected?: number
   on?: boolean
   cols?: number
+  rowDelay?: number
 }>(), {
   total: 50,
   affected: 40,
   on: false,
   cols: 10,
+  rowDelay: 1000,
 })
 </script>
 
@@ -20,6 +23,7 @@ withDefaults(defineProps<{
       :key="i"
       class="person"
       :class="{ 'person-red': on && i <= affected }"
+      :style="on ? { transitionDelay: `${Math.floor((i - 1) / cols) * rowDelay}ms` } : undefined"
       viewBox="0 0 24 28"
       aria-hidden="true"
     >

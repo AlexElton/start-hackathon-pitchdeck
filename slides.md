@@ -15,7 +15,7 @@ clicks: 1
 <div class="absolute inset-0 flex items-center justify-center">
   <div class="flex flex-col items-center text-center">
     <PeopleGrid :total="50" :affected="40" :on="$clicks >= 1" />
-    <div v-click>
+    <div class="fade-item" :class="{ on: $clicks >= 1 }" :style="{ transitionDelay: $clicks >= 1 ? '4000ms' : '0ms' }">
       <div class="text-4xl font-extrabold mt-4" style="color: #101010">8 av 10 studenter</div>
       <p class="text-lg mt-2" style="color: rgba(16,16,16,0.75); max-width: 300px">
         mener det er vanskelig å henge med på lokale nyheter
@@ -25,7 +25,7 @@ clicks: 1
 </div>
 
 <!--
-Ren hvit bakgrunn med 50 dempede blå figurer. Klikk 1: de første 40 blir klart røde (80 %), og «80 % av studenter synes …»-teksten dukker opp — 40 av 50 studenter mister lokalnyhetene. La tallet snakke. Ikke forklar produktet ennå.
+Ren hvit bakgrunn med 50 dempede blå figurer. Klikk 1: de fire øverste radene blir røde én etter én, med ett sekunds mellomrom (40 av 50 = 80 %). Til slutt dukker «8 av 10 studenter»-teksten opp — 40 av 50 studenter mister lokalnyhetene. La tallet snakke. Ikke forklar produktet ennå.
 -->
 
 ---

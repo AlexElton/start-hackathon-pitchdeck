@@ -130,22 +130,15 @@ body,
   box-shadow: 0 0 0 4px rgba(16, 16, 16, 0.06);
 }
 
-/* ---------- Slide 1: people turning red together ---------- */
+/* ---------- Slide 1: people turning red row by row ---------- */
 /* Unaffected people: Polaris blue, softened so the red carries the slide */
 .person {
-  color: rgba(0, 83, 121, 0.22);
+  color: rgba(0, 83, 121, 0.36);
   transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .person-red {
   color: #E02020;
-  animation: person-hit 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes person-hit {
-  0%   { transform: translateY(0); }
-  35%  { transform: translateY(-4px); }
-  100% { transform: translateY(0); }
 }
 
 /* ---------- Slide 5: staged reveal ---------- */

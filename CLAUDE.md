@@ -90,7 +90,7 @@ clicks: 1
 ```
 
 - 52 fits a 13×4 grid, 50 fits 10×5, 100 fits 10×10.
-- Use `components/PeopleGrid.vue`. It draws its own head-and-shoulders silhouette: unaffected people in soft Polaris blue (`.person`), affected ones turn red all at once with a small lift (`.person-red`). Don't stagger them.
+- Use `components/PeopleGrid.vue`. It draws its own head-and-shoulders silhouette: unaffected people in soft Polaris blue (`.person`), affected ones turn red one row at a time from the top, 1 s apart (`rowDelay`, `.person-red`). No jump, color only. Fade the number in after the last row.
 - For a positive finding, swap `person-red` for a class that sets `color: #005379`, and start the people in `var(--ink-faint)`. Change `.person` and `.person-red` in a slide-scoped style, not globally.
 
 ## Motion
